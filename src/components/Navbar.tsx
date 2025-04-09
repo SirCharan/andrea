@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, X, Instagram } from 'lucide-react';
@@ -32,30 +31,30 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <NavLink 
-            to="/" 
-            className={({isActive}) => `nav-link ${isActive ? 'active' : ''} ${isScrolled ? 'text-foreground/80' : 'text-white/90'}`}
+          <a 
+            href="/"
+            className={`nav-link ${window.location.pathname === '/' ? 'active' : ''} ${isScrolled ? 'text-foreground/80' : 'text-white/90'}`}
           >
             Home
-          </NavLink>
-          <NavLink 
-            to="/about" 
-            className={({isActive}) => `nav-link ${isActive ? 'active' : ''} ${isScrolled ? 'text-foreground/80' : 'text-white/90'}`}
+          </a>
+          <a 
+            href="#featured"
+            className={`nav-link ${isScrolled ? 'text-foreground/80' : 'text-white/90'}`}
           >
-            About
-          </NavLink>
-          <NavLink 
-            to="/travel-diary" 
-            className={({isActive}) => `nav-link ${isActive ? 'active' : ''} ${isScrolled ? 'text-foreground/80' : 'text-white/90'}`}
+            Discover
+          </a>
+          <a 
+            href="#instagram-feed"
+            className={`nav-link ${isScrolled ? 'text-foreground/80' : 'text-white/90'}`}
           >
-            Travel Diary
-          </NavLink>
-          <NavLink 
-            to="/contact" 
-            className={({isActive}) => `nav-link ${isActive ? 'active' : ''} ${isScrolled ? 'text-foreground/80' : 'text-white/90'}`}
+            Follow my adventures
+          </a>
+          <a 
+            href="#connect"
+            className={`nav-link ${isScrolled ? 'text-foreground/80' : 'text-white/90'}`}
           >
-            Contact
-          </NavLink>
+            Let's connect
+          </a>
           <a 
             href="https://www.instagram.com/aindrila_bhowmik/" 
             target="_blank" 
@@ -81,34 +80,34 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md shadow-md animate-fade-in">
           <nav className="container mx-auto px-4 py-4 flex flex-col space-y-3">
-            <NavLink 
-              to="/" 
-              className={({isActive}) => `nav-link ${isActive ? 'active' : ''} py-2`}
+            <a 
+              href="/"
+              className="nav-link py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
-            </NavLink>
-            <NavLink 
-              to="/about" 
-              className={({isActive}) => `nav-link ${isActive ? 'active' : ''} py-2`}
+            </a>
+            <a 
+              href="#featured"
+              className="nav-link py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              About
-            </NavLink>
-            <NavLink 
-              to="/travel-diary" 
-              className={({isActive}) => `nav-link ${isActive ? 'active' : ''} py-2`}
+              Discover
+            </a>
+            <a 
+              href="#instagram-feed"
+              className="nav-link py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Travel Diary
-            </NavLink>
-            <NavLink 
-              to="/contact" 
-              className={({isActive}) => `nav-link ${isActive ? 'active' : ''} py-2`}
+              Follow my adventures
+            </a>
+            <a 
+              href="#connect"
+              className="nav-link py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Contact
-            </NavLink>
+              Let's connect
+            </a>
             <a 
               href="https://www.instagram.com/aindrila_bhowmik/" 
               target="_blank" 

@@ -136,7 +136,7 @@ Influencer by Passion</p>
       
       
       {/* Instagram Feed */}
-      <section className="py-20 bg-gradient-to-br from-ocean-100 to-teal-50">
+      <section id="instagram-feed" className="py-20 bg-gradient-to-br from-ocean-100 to-teal-50">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <div className="flex items-center justify-center mb-4">
