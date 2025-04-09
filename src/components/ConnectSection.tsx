@@ -1,8 +1,8 @@
-
 import { useState } from 'react';
 import { Mail, Instagram, Send } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from './ScrollReveal';
+import emailjs from '@emailjs/browser';
 
 const ConnectSection = () => {
   const { toast } = useToast();
@@ -26,21 +26,42 @@ const ConnectSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // In a real app, this would send the form data to a server
-    // Simulating API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Send email using EmailJS
+      await emailjs.send(
+        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        {
+          to_email: 'coolandri17@gmail.com',
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          company: formData.company || 'Not specified',
+          subject: 'New Collaboration Request',
+        }
+      );
+
       toast({
         title: "Message sent!",
         description: "Thank you for reaching out. I'll get back to you soon!",
       });
+      
       setFormData({
         name: '',
         email: '',
         company: '',
         message: '',
       });
-    }, 1000);
+    } catch (error) {
+      toast({
+        title: "Failed to send message",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+      console.error('Error submitting form:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

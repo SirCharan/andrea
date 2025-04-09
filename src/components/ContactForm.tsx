@@ -1,7 +1,7 @@
-
 import { useState } from 'react';
 import { Send, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
 
 type FormData = {
   name: string;
@@ -10,6 +10,9 @@ type FormData = {
   message: string;
   company?: string;
 };
+
+// Initialize EmailJS with your public key
+emailjs.init("YOUR_PUBLIC_KEY"); // You'll need to replace this with your actual public key
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -32,13 +35,20 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
     try {
-      // In a real app, this would send data to a backend
-      // For this demo, we'll just simulate the process
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      console.log('Form submitted:', formData);
+      // Send email using EmailJS
+      await emailjs.send(
+        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        {
+          to_email: 'coolandri17@gmail.com',
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          company: formData.company || 'Not specified',
+        }
+      );
       
       // Show success message
       toast({

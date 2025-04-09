@@ -81,11 +81,11 @@ Influencer by Passion</p>
                 <div className="relative h-64">
                   <img src="/lovable-uploads/a.jpeg" alt="Beach destination" className="w-full h-full object-cover" />
                   <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/70 to-transparent">
-                    <span className="text-white font-medium">Thailand</span>
+                    <span className="text-white font-medium">Singapore</span>
                   </div>
                 </div>
                 <div className="p-5">
-                  <h3 className="text-xl font-semibold mb-2">Island Paradise Adventures</h3>
+                  <h3 className="text-xl font-semibold mb-2">City Lights, City Sights</h3>
                   <p className="text-gray-600 mb-4">Exploring the crystal clear waters and pristine beaches of Thailand's tropical islands.</p>
                   
                 </div>
