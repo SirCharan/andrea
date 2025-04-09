@@ -40,13 +40,13 @@ const Footer = () => {
                 <Link to="/" className="text-white/80 hover:text-white transition-colors">Home</Link>
               </li>
               <li>
-                <Link to="#featured" className="text-white/80 hover:text-white transition-colors">Discover</Link>
+                <a href="#featured" className="text-white/80 hover:text-white transition-colors">Discover</a>
               </li>
               <li>
-                <Link to="#instagram-feed" className="text-white/80 hover:text-white transition-colors">Follow my adventures</Link>
+                <a href="#instagram-feed" className="text-white/80 hover:text-white transition-colors">Follow my adventures</a>
               </li>
               <li>
-                <Link to="#connect" className="text-white/80 hover:text-white transition-colors">Let's connect</Link>
+                <a href="#connect" className="text-white/80 hover:text-white transition-colors">Let's connect</a>
               </li>
             </ul>
           </div>
@@ -83,12 +83,12 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-bold text-xl">Collaboration</h3>
             <p className="text-white/80">Interested in working together? Feel free to reach out for travel collaborations!</p>
-            <Link 
-              to="/contact" 
+            <a 
+              href="#connect" 
               className="inline-block px-6 py-3 bg-white text-teal-800 rounded-full font-medium hover:bg-teal-50 transition-colors"
             >
               Get in Touch
-            </Link>
+            </a>
           </div>
         </div>
         
