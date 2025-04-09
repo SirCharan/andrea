@@ -14,6 +14,7 @@ const ConnectSection = () => {
     company: '',
     message: '',
     phone: '',
+    collabType: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [phoneError, setPhoneError] = useState('');
@@ -75,6 +76,7 @@ const ConnectSection = () => {
           message: formData.message,
           company: formData.company || 'Not specified',
           phone: formData.phone || 'Not provided',
+          collab_type: formData.collabType ? formData.collabType.charAt(0).toUpperCase() + formData.collabType.slice(1) : 'Not specified',
           subject: 'New Collaboration Request',
         }
       );
@@ -84,6 +86,7 @@ const ConnectSection = () => {
 Name: ${formData.name}
 Brand: ${formData.company || 'Not specified'}
 Phone: ${formData.phone}
+Collaboration Type: ${formData.collabType ? formData.collabType.charAt(0).toUpperCase() + formData.collabType.slice(1) : 'Not specified'}
 Message: ${formData.message}`;
 
         window.open(
@@ -102,6 +105,7 @@ Message: ${formData.message}`;
         company: '',
         message: '',
         phone: '',
+        collabType: '',
       });
       setPhoneError('');
     } catch (error) {
@@ -203,14 +207,14 @@ Message: ${formData.message}`;
                   />
                 </div>
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium mb-2">Brand</label>
+                  <label htmlFor="company" className="block text-sm font-medium mb-2">Your Brand</label>
                   <input
                     type="text"
                     id="company"
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
-                    placeholder="Your Brand"
+                    placeholder="Your Cafe/Club/Restaurant/Product/Spa"
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                   />
                 </div>
@@ -230,6 +234,33 @@ Message: ${formData.message}`;
                   {phoneError && (
                     <p className="mt-1 text-sm text-red-500">{phoneError}</p>
                   )}
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium mb-3">Collaboration Type</label>
+                  <div className="flex space-x-6">
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="collabType"
+                        value="paid"
+                        checked={formData.collabType === 'paid'}
+                        onChange={handleChange}
+                        className="w-4 h-4 text-sky-500 border-zinc-700 focus:ring-sky-500 focus:ring-offset-zinc-900"
+                      />
+                      <span>Paid Collaboration</span>
+                    </label>
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="collabType"
+                        value="barter"
+                        checked={formData.collabType === 'barter'}
+                        onChange={handleChange}
+                        className="w-4 h-4 text-sky-500 border-zinc-700 focus:ring-sky-500 focus:ring-offset-zinc-900"
+                      />
+                      <span>Barter Collaboration</span>
+                    </label>
+                  </div>
                 </div>
                 <div className="md:col-span-2">
                   <label htmlFor="message" className="block text-sm font-medium mb-2">Collaboration Details</label>
