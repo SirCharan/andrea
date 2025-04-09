@@ -20,10 +20,7 @@ const ConnectSection = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -31,7 +28,6 @@ const ConnectSection = () => {
     setIsSubmitting(true);
     
     try {
-      // Send email using EmailJS
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
@@ -46,7 +42,6 @@ const ConnectSection = () => {
         }
       );
 
-      // Send WhatsApp message if phone number is provided
       if (formData.phone && import.meta.env.VITE_WHATSAPP_NUMBER) {
         const whatsappMessage = `New Contact Form Submission:
 Name: ${formData.name}
@@ -153,8 +148,8 @@ Message: ${formData.message}`;
               </p>
             </div>
             
-            <form onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">Your Name</label>
                   <input
