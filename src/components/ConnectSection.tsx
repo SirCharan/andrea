@@ -11,7 +11,6 @@ const ConnectSection = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
     company: '',
     message: '',
     phone: '',
@@ -73,7 +72,6 @@ const ConnectSection = () => {
         {
           to_email: 'coolandri17@gmail.com',
           from_name: formData.name,
-          from_email: formData.email,
           message: formData.message,
           company: formData.company || 'Not specified',
           phone: formData.phone || 'Not provided',
@@ -84,8 +82,7 @@ const ConnectSection = () => {
       if (formData.phone && import.meta.env.VITE_WHATSAPP_NUMBER) {
         const whatsappMessage = `New Contact Form Submission:
 Name: ${formData.name}
-Email: ${formData.email}
-Company: ${formData.company || 'Not specified'}
+Brand: ${formData.company || 'Not specified'}
 Phone: ${formData.phone}
 Message: ${formData.message}`;
 
@@ -102,7 +99,6 @@ Message: ${formData.message}`;
       
       setFormData({
         name: '',
-        email: '',
         company: '',
         message: '',
         phone: '',
@@ -207,27 +203,14 @@ Message: ${formData.message}`;
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">Email Address</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="your@email.com"
-                    className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium mb-2">Company/Organization</label>
+                  <label htmlFor="company" className="block text-sm font-medium mb-2">Brand</label>
                   <input
                     type="text"
                     id="company"
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
-                    placeholder="Your Company"
+                    placeholder="Your Brand"
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                   />
                 </div>
