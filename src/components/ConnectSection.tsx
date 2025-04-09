@@ -147,7 +147,10 @@ Message: ${formData.message}`;
                 </div>
                 <div>
                   <div className="text-lg font-medium">Email</div>
-                  <a href="mailto:coolandri17@gmail.com" className="text-white/70 hover:text-white transition-colors">
+                  <a 
+                    href="mailto:coolandri17@gmail.com?subject=Collaboration%20Inquiry" 
+                    className="text-white/70 hover:text-white transition-colors"
+                  >
                     coolandri17@gmail.com
                   </a>
                 </div>

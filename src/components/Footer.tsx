@@ -23,7 +23,7 @@ const Footer = () => {
                 <Instagram size={20} />
               </a>
               <a 
-                href="mailto:coolandri17@gmail.com" 
+                href="mailto:coolandri17@gmail.com?subject=Collaboration%20Inquiry" 
                 className="social-icon"
                 aria-label="Email"
               >
@@ -61,7 +61,10 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2">
                 <Mail size={20} className="flex-shrink-0 mt-1" />
-                <a href="mailto:coolandri17@gmail.com" className="text-white/80 hover:text-white transition-colors">
+                <a 
+                  href="mailto:coolandri17@gmail.com?subject=Collaboration%20Inquiry" 
+                  className="text-white/80 hover:text-white transition-colors"
+                >
                   coolandri17@gmail.com
                 </a>
               </li>
