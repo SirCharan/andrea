@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Mail, Instagram, Send } from 'lucide-react';
+import { Mail, Instagram, Send, Phone } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from './ScrollReveal';
-import emailjs from '@emailjs/browser';
 
 const ConnectSection = () => {
   const { toast } = useToast();
@@ -11,6 +10,7 @@ const ConnectSection = () => {
     email: '',
     company: '',
     message: '',
+    phone: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -27,19 +27,17 @@ const ConnectSection = () => {
     setIsSubmitting(true);
     
     try {
-      // Send email using EmailJS
-      await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
-        {
-          to_email: 'coolandri17@gmail.com',
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-          company: formData.company || 'Not specified',
-          subject: 'New Collaboration Request',
-        }
-      );
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
 
       toast({
         title: "Message sent!",
@@ -51,6 +49,7 @@ const ConnectSection = () => {
         email: '',
         company: '',
         message: '',
+        phone: '',
       });
     } catch (error) {
       toast({
@@ -84,7 +83,7 @@ const ConnectSection = () => {
           <div className="bg-zinc-900 rounded-2xl p-8 md:p-10 shadow-xl">
             <h3 className="text-3xl font-bold mb-8">Get in Touch</h3>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
               <div className="flex items-center space-x-4">
                 <div className="bg-sky-500/20 p-4 rounded-full">
                   <Mail className="text-sky-400" size={28} />
@@ -111,6 +110,16 @@ const ConnectSection = () => {
                   >
                     @aindrila_bhowmik
                   </a>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-4">
+                <div className="bg-green-500/20 p-4 rounded-full">
+                  <Phone className="text-green-400" size={28} />
+                </div>
+                <div>
+                  <div className="text-lg font-medium">WhatsApp</div>
+                  <span className="text-white/70">Available on request</span>
                 </div>
               </div>
             </div>
@@ -159,6 +168,18 @@ const ConnectSection = () => {
                     value={formData.company}
                     onChange={handleChange}
                     placeholder="Your Company"
+                    className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium mb-2">Phone Number (WhatsApp)</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+91 XXXXX XXXXX"
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                   />
                 </div>
