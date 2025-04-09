@@ -52,7 +52,7 @@ npm run dev
 
 ## What technologies are used for this project?
 
-This project is built with .
+This project is built with:
 
 - Vite
 - TypeScript
@@ -62,7 +62,7 @@ This project is built with .
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/8c3bb0a8-616c-4dea-aaf0-e5d2c4cc0907) and click on Share -> Publish.
+The project can be deployed to any static hosting service like Vercel, Netlify, or GitHub Pages.
 
 ## I want to use a custom domain - is that possible?
 
