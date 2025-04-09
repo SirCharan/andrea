@@ -17,14 +17,53 @@ const ConnectSection = () => {
     phone: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [phoneError, setPhoneError] = useState('');
+
+  const validatePhoneNumber = (phone: string) => {
+    // Remove any non-digit characters
+    const digits = phone.replace(/\D/g, '');
+    
+    // Check if it's a valid Indian phone number
+    if (digits.length === 0) return true; // Allow empty field
+    if (digits.length !== 12) return false; // Must be 12 digits (+91 + 10 digits)
+    if (!digits.startsWith('91')) return false; // Must start with 91
+    
+    return true;
+  };
+
+  const formatPhoneNumber = (phone: string) => {
+    // Remove any non-digit characters
+    const digits = phone.replace(/\D/g, '');
+    
+    // Format as +91 XXXXXXXXXX
+    if (digits.length === 0) return '';
+    if (digits.length <= 2) return `+${digits}`;
+    return `+${digits.slice(0, 2)} ${digits.slice(2, 12)}`;
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    if (name === 'phone') {
+      const formattedPhone = formatPhoneNumber(value);
+      const isValid = validatePhoneNumber(value);
+      
+      setFormData(prev => ({ ...prev, [name]: formattedPhone }));
+      setPhoneError(isValid ? '' : 'Please enter a valid Indian phone number (+91 followed by 10 digits)');
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate phone number if provided
+    if (formData.phone && !validatePhoneNumber(formData.phone)) {
+      setPhoneError('Please enter a valid Indian phone number (+91 followed by 10 digits)');
+      return;
+    }
+    
     setIsSubmitting(true);
     
     try {
@@ -68,6 +107,7 @@ Message: ${formData.message}`;
         message: '',
         phone: '',
       });
+      setPhoneError('');
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
@@ -196,9 +236,14 @@ Message: ${formData.message}`;
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="+91 XXXXX XXXXX"
-                    className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    placeholder="+91 XXXXXXXXXX"
+                    className={`w-full bg-zinc-800 border ${
+                      phoneError ? 'border-red-500' : 'border-zinc-700'
+                    } rounded-lg px-4 py-3 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent`}
                   />
+                  {phoneError && (
+                    <p className="mt-1 text-sm text-red-500">{phoneError}</p>
+                  )}
                 </div>
                 <div className="md:col-span-2">
                   <label htmlFor="message" className="block text-sm font-medium mb-2">Collaboration Details</label>

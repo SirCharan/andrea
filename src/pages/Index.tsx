@@ -42,8 +42,8 @@ Influencer by Passion</p>
                 <span>25K+ Followers</span>
               </div>
               <div className="flex items-center">
-                
-                
+                <Briefcase className="mr-2 text-coral-400" size={20} />
+                <span>Business Team Lead</span>
               </div>
               <div className="flex items-center">
                 <GraduationCap className="mr-2 text-coral-400" size={20} />
