@@ -65,7 +65,7 @@ const ConnectSection = () => {
   };
 
   return (
-    <section className="py-20 bg-black text-white">
+    <section id="connect" className="py-20 bg-black text-white">
       <div className="container mx-auto px-4">
         <div className="flex justify-center mb-8">
           <div className="bg-teal-900/50 text-amber-500 text-lg font-medium px-6 py-2 rounded-full border border-amber-500/30">

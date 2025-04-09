@@ -52,10 +52,9 @@ Influencer by Passion</p>
             </div>
             
             <div className="flex flex-wrap justify-center gap-5">
-              <Link to="/about" className="px-8 py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-full transition-colors flex items-center gap-2">
-                Learn About Me <ChevronRight size={20} />
-              </Link>
-              
+              <a href="#connect" className="px-8 py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-full transition-colors flex items-center gap-2">
+                Collaborate with me <ChevronRight size={20} />
+              </a>
             </div>
           </div>
         </div>
