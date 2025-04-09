@@ -1,14 +1,13 @@
-import type { APIRoute } from "astro";
 import emailjs from '@emailjs/browser';
 
-const EMAILJS_SERVICE_ID = import.meta.env.EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = import.meta.env.EMAILJS_TEMPLATE_ID;
-const EMAILJS_PUBLIC_KEY = import.meta.env.EMAILJS_PUBLIC_KEY;
-const WHATSAPP_NUMBER = import.meta.env.WHATSAPP_NUMBER;
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
 
-export const post: APIRoute = async ({ request }) => {
+export async function POST(req: Request) {
   try {
-    const data = await request.json();
+    const data = await req.json();
     const { name, email, company, message, phone } = data;
 
     // Send email using EmailJS
@@ -38,7 +37,7 @@ Message: ${message}`;
 
       const whatsappUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(whatsappMessage)}`;
       
-      // Send WhatsApp message using the WhatsApp Business API
+      // Send WhatsApp message using the WhatsApp API
       await fetch(whatsappUrl);
     }
 
@@ -67,4 +66,4 @@ Message: ${message}`;
       }
     );
   }
-}; 
+} 

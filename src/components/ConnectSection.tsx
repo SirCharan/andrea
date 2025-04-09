@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { Mail, Instagram, Send, Phone } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from './ScrollReveal';
+import emailjs from '@emailjs/browser';
+
+// Initialize EmailJS
+emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
 
 const ConnectSection = () => {
   const { toast } = useToast();
@@ -27,16 +31,34 @@ const ConnectSection = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      // Send email using EmailJS
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          to_email: 'coolandri17@gmail.com',
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          company: formData.company || 'Not specified',
+          phone: formData.phone || 'Not provided',
+          subject: 'New Collaboration Request',
+        }
+      );
 
-      if (!response.ok) {
-        throw new Error('Failed to send message');
+      // Send WhatsApp message if phone number is provided
+      if (formData.phone && import.meta.env.VITE_WHATSAPP_NUMBER) {
+        const whatsappMessage = `New Contact Form Submission:
+Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company || 'Not specified'}
+Phone: ${formData.phone}
+Message: ${formData.message}`;
+
+        window.open(
+          `https://api.whatsapp.com/send?phone=${import.meta.env.VITE_WHATSAPP_NUMBER}&text=${encodeURIComponent(whatsappMessage)}`,
+          '_blank'
+        );
       }
 
       toast({
@@ -52,12 +74,12 @@ const ConnectSection = () => {
         phone: '',
       });
     } catch (error) {
+      console.error('Error submitting form:', error);
       toast({
         title: "Failed to send message",
         description: "Please try again later.",
         variant: "destructive",
       });
-      console.error('Error submitting form:', error);
     } finally {
       setIsSubmitting(false);
     }
