@@ -109,13 +109,13 @@ Influencer by Passion</p>
             
             <ScrollReveal delay={300}>
               <div className="rounded-xl overflow-hidden shadow-md card-hover bg-white">
-                <div className="relative h-64">
-                  <img src="/lovable-uploads/c761ec3c-c003-416f-8523-5de276969c0c.png" alt="Night destination" className="w-full h-full object-cover" />
+                <div className="relative h-64"> 
+                  <img src="/lovable-uploads/singapore-mbs.png" alt="Night destination" className="w-full h-full object-cover" />
                   <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/70 to-transparent">
                     <span className="text-white font-medium">Goa</span>
                   </div>
                 </div>
-                <div className="p-5">
+                <div className="p-5"> 
                   <h3 className="text-xl font-semibold mb-2">Magical Evenings in Paradise</h3>
                   <p className="text-gray-600 mb-4">Experiencing vibrant nightlife and magical moments in dreamy destinations.</p>
                   
