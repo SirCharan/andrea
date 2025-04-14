@@ -142,7 +142,7 @@ Influencer by Passion</p>
           </ScrollReveal>
           
           <ScrollReveal delay={200}>
-            <InstagramFeed limit={6} />
+            <InstagramFeed />
           </ScrollReveal>
           
           <div className="text-center mt-12">
