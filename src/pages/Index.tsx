@@ -85,7 +85,7 @@ Influencer by Passion</p>
                 </div>
                 <div className="p-5">
                   <h3 className="text-xl font-semibold mb-2">City Lights, City Sights</h3>
-                  <p className="text-gray-600 mb-4">Exploring the crystal clear waters and pristine beaches of Thailand's tropical islands.</p>
+                  <p className="text-gray-600 mb-4">Lost in the architectural hues of Singapore.</p>
                   
                 </div>
               </div>
@@ -122,12 +122,6 @@ Influencer by Passion</p>
                 </div>
               </div>
             </ScrollReveal>
-          </div>
-          
-          <div className="text-center mt-12">
-            <Link to="/travel-diary" className="inline-flex items-center gap-2 px-8 py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-full transition-colors">
-              Explore More Destinations <ChevronRight size={20} />
-            </Link>
           </div>
         </div>
       </section>
